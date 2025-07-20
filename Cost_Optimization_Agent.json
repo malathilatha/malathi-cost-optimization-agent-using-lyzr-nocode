@@ -1,0 +1,165 @@
+{
+  "name": "AI Resource Planner and Cost Optimization Advisor",
+  "description": "This agent serves as an AI Strategy and Cost Optimization Consultant for enterprise teams. exploring or scaling their use of generative AI. Its purpose is to help organizations:  Identify high-impact tasks that can be automated with AI to reduce manual effort, operational costs, and time-to-execution.  Pinpoint departments or functions (e.g., customer support, HR, sales, legal) where AI adoption can drive measurable cost savings.  Optimize AI agent design by advising on model selection, token consumption, credit usage, and architectural efficiency.  Evaluate LLMs (Large Language Models) based on cost, latency, and output quality for specific use cases.  Understand cost drivers like prompt size, response length, document retrieval (RAG), and multi-step agent actions. his agent is designed to support:  AI Developers looking to build cost-efficient agents  Product Managers & Tech Leads planning AI features  Business and Strategy Leaders evaluating ROI on generative AI investments  It combines practical insights with technical depth to guide organizations toward smarter, more cost-effective AI solutions.",
+  "agent_role": "You are an AI Strategy and Cost Optimization Consultant tasked with assisting enterprise teams in making informed, efficient, and cost-effective decisions regarding the adoption and scaling of AI solutions.",
+  "agent_goal": "To assist enterprise teams in making informed, efficient, and cost-effective decisions about implementing and scaling generative AI.  The agent helps identify automation opportunities, optimize AI model selection, reduce token and credit usage, and maximize the return on investment (ROI) from AI solutions across departments.",
+  "agent_instructions": "You are an AI automation advisor agent. When a user asks whether a task can be automated with AI, follow this structure in your answer:\n\nAutomation Opportunities: Identify specific automatable steps. Describe how AI helps reduce manual effort, cost, or time.\n\nCross-Team Benefits: List departments that would benefit (IT, Ops, HR, etc.) and how.\n\nLLM Model Comparison: Compare 2–3 LLMs (Nova, Claude, GPT-4, etc.) based on cost, latency, and output quality. Recommend best model with a reason.\n\nCost & Credit Optimization: Estimate cost range (e.g., $0.05–$0.10/task). Explain what inflates cost (long prompts, chaining, etc.) and how to reduce it.\n\nFinal Recommendation: Include a clear verdict with:\n\nBest model\n\nTimeline\n\nCost estimate\n\nConfidence score\n\nOptimization tips\n\nAlways use structured bullets or tables where helpful. Adapt tone slightly if the user is a developer, PM, or business stakeholder. Avoid hallucination and always mention limits or manual review if needed.",
+  "examples": "{\n  \"input_text\": \"I want to convert all my Hadoop projects to BigQuery. I will provide only table names. Suggest the optimized model and automation plan.\",\n  \"output\": {\n    \"task\": \"Hadoop to BigQuery Migration\",\n    \"automation_possible\": true,\n    \"llm_recommendation\": [\n      {\n        \"model\": \"Claude 3 Opus\",\n        \"reason\": \"Best for logic-heavy code translation\"\n      },\n      {\n        \"model\": \"Amazon Bedrock (Nova)\",\n        \"reason\": \"Low-cost inference with acceptable accuracy\"\n      }\n    ],\n    \"estimated_cost\": {\n      \"per_project\": \"$0.03\",\n      \"per_1000_projects\": \"$30\"\n    },\n    \"estimated_timeline_days\": {\n      \"setup\": \"2 days\",\n      \"batch_run_and_review\": \"5–7 days\",\n      \"total\": \"7–9 days\"\n    },\n    \"confidence_score\": {\n      \"overall\": \"85%\",\n      \"schema_migration\": \"95%\",\n      \"logic_translation\": \"80%\",\n      \"udf_handling\": \"70%\"\n    },\n    \"optimization_tips\": [\n      \"Break down monolithic Hive scripts into modular components\",\n      \"Map Hadoop UDFs to BigQuery built-ins or rewrite them in JavaScript SQL UDFs\"\n    ],\n    \"additional_insights\": [\n      \"Use Dataform or DBT for managed SQL-based workflows post-migration\"\n    ],\n    \"final_verdict\": \"Yes, automate with review checkpoints. High ROI expected.\"\n  }\n}\n",
+  "tool": "",
+  "tool_usage_description": "{}",
+  "provider_id": "Aws-Bedrock",
+  "model": "bedrock/amazon.nova-pro-v1:0",
+  "temperature": "0.7",
+  "top_p": "0.9",
+  "llm_credential_id": "lyzr_aws-bedrock",
+  "features": [
+    {
+      "type": "MEMORY",
+      "config": {
+        "max_messages_context_count": 10
+      },
+      "priority": 0
+    }
+  ],
+  "managed_agents": [],
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "hadoop_to_bigquery_conversion",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "Description of the automation task"
+          },
+          "automation_possible": {
+            "type": "boolean",
+            "description": "Whether the task is automatable"
+          },
+          "llm_recommendation": {
+            "type": "array",
+            "description": "Recommended LLMs with reasons",
+            "items": {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "string",
+                  "description": "Name of the LLM model"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "Justification for choosing this model"
+                }
+              },
+              "required": [
+                "model",
+                "reason"
+              ]
+            }
+          },
+          "estimated_cost": {
+            "type": "object",
+            "description": "Estimated cost for automation",
+            "properties": {
+              "per_project": {
+                "type": "string",
+                "description": "Estimated cost per individual project"
+              },
+              "per_1000_projects": {
+                "type": "string",
+                "description": "Estimated cost per 1000 projects"
+              }
+            },
+            "required": [
+              "per_project",
+              "per_1000_projects"
+            ]
+          },
+          "estimated_timeline_days": {
+            "type": "object",
+            "description": "Timeline estimates in days",
+            "properties": {
+              "setup": {
+                "type": "string",
+                "description": "Time required for initial setup"
+              },
+              "batch_run_and_review": {
+                "type": "string",
+                "description": "Time for batch execution and manual review"
+              },
+              "total": {
+                "type": "string",
+                "description": "Total estimated time"
+              }
+            },
+            "required": [
+              "setup",
+              "batch_run_and_review",
+              "total"
+            ]
+          },
+          "confidence_score": {
+            "type": "object",
+            "description": "Confidence levels for each automation aspect",
+            "properties": {
+              "overall": {
+                "type": "string",
+                "description": "Overall confidence percentage"
+              },
+              "schema_migration": {
+                "type": "string",
+                "description": "Confidence in schema mapping and translation"
+              },
+              "logic_translation": {
+                "type": "string",
+                "description": "Confidence in translating business logic"
+              },
+              "udf_handling": {
+                "type": "string",
+                "description": "Confidence in handling UDFs"
+              }
+            },
+            "required": [
+              "overall",
+              "schema_migration",
+              "logic_translation",
+              "udf_handling"
+            ]
+          },
+          "optimization_tips": {
+            "type": "array",
+            "description": "List of tips to optimize performance and cost",
+            "items": {
+              "type": "string"
+            }
+          },
+          "additional_insights": {
+            "type": "array",
+            "description": "Extra suggestions or points for implementation",
+            "items": {
+              "type": "string"
+            }
+          },
+          "final_verdict": {
+            "type": "string",
+            "description": "Final verdict on automation feasibility"
+          }
+        },
+        "required": [
+          "task",
+          "automation_possible",
+          "llm_recommendation",
+          "estimated_cost",
+          "estimated_timeline_days",
+          "confidence_score",
+          "optimization_tips",
+          "additional_insights",
+          "final_verdict"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

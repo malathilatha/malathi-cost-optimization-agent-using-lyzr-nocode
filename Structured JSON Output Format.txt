@@ -1,0 +1,123 @@
+Structured JSON Output Format:
+{
+  "name": "hadoop_to_bigquery_conversion",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "task": {
+        "type": "string",
+        "description": "Description of the automation task"
+      },
+      "automation_possible": {
+        "type": "boolean",
+        "description": "Whether the task is automatable"
+      },
+      "llm_recommendation": {
+        "type": "array",
+        "description": "Recommended LLMs with reasons",
+        "items": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "description": "Name of the LLM model"
+            },
+            "reason": {
+              "type": "string",
+              "description": "Justification for choosing this model"
+            }
+          },
+          "required": ["model", "reason"]
+        }
+      },
+      "estimated_cost": {
+        "type": "object",
+        "description": "Estimated cost for automation",
+        "properties": {
+          "per_project": {
+            "type": "string",
+            "description": "Estimated cost per individual project"
+          },
+          "per_1000_projects": {
+            "type": "string",
+            "description": "Estimated cost per 1000 projects"
+          }
+        },
+        "required": ["per_project", "per_1000_projects"]
+      },
+      "estimated_timeline_days": {
+        "type": "object",
+        "description": "Timeline estimates in days",
+        "properties": {
+          "setup": {
+            "type": "string",
+            "description": "Time required for initial setup"
+          },
+          "batch_run_and_review": {
+            "type": "string",
+            "description": "Time for batch execution and manual review"
+          },
+          "total": {
+            "type": "string",
+            "description": "Total estimated time"
+          }
+        },
+        "required": ["setup", "batch_run_and_review", "total"]
+      },
+      "confidence_score": {
+        "type": "object",
+        "description": "Confidence levels for each automation aspect",
+        "properties": {
+          "overall": {
+            "type": "string",
+            "description": "Overall confidence percentage"
+          },
+          "schema_migration": {
+            "type": "string",
+            "description": "Confidence in schema mapping and translation"
+          },
+          "logic_translation": {
+            "type": "string",
+            "description": "Confidence in translating business logic"
+          },
+          "udf_handling": {
+            "type": "string",
+            "description": "Confidence in handling UDFs"
+          }
+        },
+        "required": ["overall", "schema_migration", "logic_translation", "udf_handling"]
+      },
+      "optimization_tips": {
+        "type": "array",
+        "description": "List of tips to optimize performance and cost",
+        "items": {
+          "type": "string"
+        }
+      },
+      "additional_insights": {
+        "type": "array",
+        "description": "Extra suggestions or points for implementation",
+        "items": {
+          "type": "string"
+        }
+      },
+      "final_verdict": {
+        "type": "string",
+        "description": "Final verdict on automation feasibility"
+      }
+    },
+    "required": [
+      "task",
+      "automation_possible",
+      "llm_recommendation",
+      "estimated_cost",
+      "estimated_timeline_days",
+      "confidence_score",
+      "optimization_tips",
+      "additional_insights",
+      "final_verdict"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,41 @@
+Example Input/Output:
+{
+  "input_text": "I want to convert all my Hadoop projects to BigQuery. I will provide only table names. Suggest the optimized model and automation plan.",
+  "output": {
+    "task": "Hadoop to BigQuery Migration",
+    "automation_possible": true,
+    "llm_recommendation": [
+      {
+        "model": "Claude 3 Opus",
+        "reason": "Best for logic-heavy code translation"
+      },
+      {
+        "model": "Amazon Bedrock (Nova)",
+        "reason": "Low-cost inference with acceptable accuracy"
+      }
+    ],
+    "estimated_cost": {
+      "per_project": "$0.03",
+      "per_1000_projects": "$30"
+    },
+    "estimated_timeline_days": {
+      "setup": "2 days",
+      "batch_run_and_review": "5–7 days",
+      "total": "7–9 days"
+    },
+    "confidence_score": {
+      "overall": "85%",
+      "schema_migration": "95%",
+      "logic_translation": "80%",
+      "udf_handling": "70%"
+    },
+    "optimization_tips": [
+      "Break down monolithic Hive scripts into modular components",
+      "Map Hadoop UDFs to BigQuery built-ins or rewrite them in JavaScript SQL UDFs"
+    ],
+    "additional_insights": [
+      "Use Dataform or DBT for managed SQL-based workflows post-migration"
+    ],
+    "final_verdict": "Yes, automate with review checkpoints. High ROI expected."
+  }
+}
